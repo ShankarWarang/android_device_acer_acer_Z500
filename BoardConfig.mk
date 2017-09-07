@@ -133,6 +133,9 @@ WIFI_DRIVER_FW_PATH_P2P:=P2P
 # Include SuperSU
 WITH_SU := true
 
+# Disable ninja compiler
+USE_NINJA := false
+
 # GPS
 TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
 
