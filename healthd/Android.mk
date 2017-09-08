@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-ifeq ($(TARGET_BOOTLOADER_BOARD_NAME),Lockin)
+ifeq ($(TARGET_BOARD_PLATFORM),mt6582)
 
 LOCAL_PATH := $(call my-dir)
 
