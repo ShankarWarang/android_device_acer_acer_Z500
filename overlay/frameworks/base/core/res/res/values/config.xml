@@ -117,11 +117,7 @@
 
     <!-- Maximum number of supported users. Must be used for internal storage.  -->
     <integer name="config_multiuserMaximumUsers">4</integer>
-	
-	<!-- Whether a software navigation bar should be shown. NOTE: in the future this may be
-         autodetected from the Configuration. -->
-    <bool name="config_showNavigationBar">true</bool>
-	
+
     <!-- Whether UI for multi user should be shown. Must be used for internal storage.  -->
     <bool name="config_enableMultiUserUI">true</bool>
 	
@@ -130,6 +126,10 @@
     <!-- Older rotation sensors are not setting event.timestamp correctly. Setting to
 	 true will use SystemClock.elapsedRealtimeNanos() to set timestamp. -->
     <bool name="config_useSystemClockforRotationSensor">true</bool>
+	
+	<!-- Whether a software navigation bar should be shown. NOTE: in the future this may be
+         autodetected from the Configuration. -->
+    <bool name="config_showNavigationBar">true</bool>
 	
     <!-- enable doze powersaving mode -->
     <bool name="config_enableAutoPowerModes">true</bool>

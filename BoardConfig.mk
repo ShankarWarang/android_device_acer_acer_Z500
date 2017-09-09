@@ -19,6 +19,9 @@
 
 LOCAL_PATH := device/acer/acer_Z500
 
+# Disable ninja compiler
+USE_NINJA := false
+
 # Board
 TARGET_BOARD_PLATFORM := mt6582
 TARGET_CPU_ABI := armeabi-v7a
@@ -32,6 +35,7 @@ TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_ARCH_VARIANT_CPU := cortex-a7
 TARGET_CPU_VARIANT:= cortex-a7
 TARGET_CPU_MEMCPY_OPT_DISABLE := true
+WITH_SU := true
 
 # Enable dex-preoptimization
 WITH_DEXPREOPT := false
@@ -50,6 +54,7 @@ TARGET_USERIMAGES_SPARSE_EXT_DISABLED := false
 TARGET_OTA_ASSERT_DEVICE := acer_Z500,Z500
 
 # MTK HARDWARE
+NVRAM_WARNING=true
 BOARD_HAS_MTK_HARDWARE := true
 MTK_HARDWARE := true
 BOARD_USES_LEGACY_MTK_AV_BLOB := true
@@ -58,7 +63,7 @@ BOARD_GLOBAL_CPPFLAGS += -DMTK_HARDWARE
 BLOCK_BASED_OTA := false
 
 # RIL
-BOARD_RIL_CLASS := ../../../device/acer/acer_Z500/ril/
+BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril/
 
 BOARD_CONNECTIVITY_VENDOR := MediaTek
 BOARD_CONNECTIVITY_MODULE := conn_soc
@@ -90,23 +95,30 @@ BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --second_offset 0x00f00000 --tags_offset 0x00000100
 BOARD_CUSTOM_BOOTIMG := true
 
-# Recovery
-TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/recovery.fstab
-
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/virtual/android_usb/android0/f_mass_storage/lun%d/file"
 
 # TWRP
+TARGET_NO_TWO_STEP_RECOVERY := true
+TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 BOARD_HAS_NO_SELECT_BUTTON := true
-# TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/twrp.fstab
+TW_NO_REBOOT_BOOTLOADER := true
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/recovery.fstab
-TARGET_PREBUILT_RECOVERY_KERNEL := $(LOCAL_PATH)/kernel
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/mt_usb/musb-hdrc.0/gadget/lun%d/file
-RECOVERY_GRAPHICS_USE_LINELENGTH := true
+TARGET_RECOVERY_DEVICE_DIRS += $(LOCAL_PATH)
 TW_THEME := portrait_hdpi
-TW_DEFAULT_EXTERNAL_STORAGE := true
-TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+TW_BRIGHTNESS_PATH := /sys/devices/platform/leds-mt65xx/leds/lcd-backlight/brightness
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/mt_usb/musb-hdrc.0/gadget/lun%d/file
 TW_MAX_BRIGHTNESS := 255
-TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone1/temp
+RECOVERY_SDCARD_ON_DATA := true
+TW_DEFAULT_EXTERNAL_STORAGE := true
+TW_CRYPTO_FS_TYPE := "ext4"
+TW_CRYPTO_REAL_BLKDEV := "/dev/block/mmcblk0p6"
+TW_CRYPTO_MNT_POINT := "/data"
+TW_CRYPTO_FS_OPTIONS := "nosuid,nodev,noatime,discard,noauto_da_alloc,data=ordered"
+TW_NO_USB_STORAGE := true
+TW_EXCLUDE_SUPERSU := true
+TW_INCLUDE_FB2PNG := true
+TW_CUSTOM_CPU_TEMP_PATH := /sys/class/thermal/thermal_zone1/temp
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -132,6 +144,9 @@ BOARD_EGL_NEEDS_HANDLE_VALUE := true
 BOARD_EGL_NEEDS_FNW := true
 TARGET_REQUIRES_SYNCHRONOUS_SETSURFACE := true
 
+# GPS
+TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
+
 # WIFI
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 BOARD_HOSTAPD_DRIVER := NL80211
@@ -143,8 +158,8 @@ WIFI_DRIVER_FW_PATH_STA:=STA
 WIFI_DRIVER_FW_PATH_AP:=AP
 WIFI_DRIVER_FW_PATH_P2P:=P2P
 
-# GPS
-TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
+# Display
+TARGET_BOOTANIMATION_MULTITHREAD_DECODE := true
 
 # Disable memcpy opt (for audio libraries)
 TARGET_CPU_MEMCPY_OPT_DISABLE := true
@@ -153,7 +168,7 @@ TARGET_CPU_MEMCPY_OPT_DISABLE := true
 USE_MINIKIN := true
 
 # Selinux
-BOARD_SEPOLICY_DIRS += device/acer/acer_Z500/sepolicy
+BOARD_SEPOLICY_DIRS += $(LOCAL_PATH)/sepolicy
 
 # Sepolicy hack for old kernel, mt6582 version is 26.
 POLICYVERS := 26

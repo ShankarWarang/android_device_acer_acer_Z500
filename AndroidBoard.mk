@@ -27,11 +27,3 @@ endif
 
 # include the non-open-source counterpart to this file
 -include vendor/acer/acer_Z500/AndroidBoardVendor.mk
-
-# copy keylayout overrides
-$(shell mkdir -p $(TARGET_OUT_KEYLAYOUT); \
-    cp -pf device/acer/acer_Z500/keylayout/Generic.kl $(TARGET_OUT_KEYLAYOUT))
-
-# copy permissions overrides
-$(shell mkdir -p $(TARGET_OUT_ETC)/permissions; \
-    cp -pf device/acer/acer_Z500/configs/android.hardware.camera.xml $(TARGET_OUT_ETC)/permissions)

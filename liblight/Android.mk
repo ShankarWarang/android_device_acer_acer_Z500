@@ -14,26 +14,17 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := $(call my-dir)
+ifeq ($(TARGET_BOARD_PLATFORM),mt6582)
 
+LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
-LOCAL_SRC_FILES := \
-	GraphicBufferExtra.cpp \
-	GraphicBufferExtra_hal.cpp
-
-LOCAL_C_INCLUDES := \
-	$(LOCAL_PATH)/include \
-	$(LOCAL_PATH)/../include
-
-LOCAL_SHARED_LIBRARIES := \
-	libhardware \
-	libcutils \
-	libutils
-
-LOCAL_EXPORT_C_INCLUDE_DIRS := \
-	$(LOCAL_PATH)/include
-
-LOCAL_MODULE := libgralloc_extra
+LOCAL_SRC_FILES := lights.c
+LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
+LOCAL_SHARED_LIBRARIES := liblog
+LOCAL_MODULE := lights.mt6582
+LOCAL_MODULE_TAGS := optional
 
 include $(BUILD_SHARED_LIBRARY)
+
+endif

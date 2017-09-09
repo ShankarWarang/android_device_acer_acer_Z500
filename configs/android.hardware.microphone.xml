@@ -14,8 +14,7 @@
      limitations under the License.
 -->
 
-<!-- This is the standard set of features for a non auto-focus camera. -->
+<!-- This is the standard feature indicating that the device includes microphone. -->
 <permissions>
-    <feature name="android.hardware.camera.any" />
-    <feature name="android.hardware.camera" />
+    <feature name="android.hardware.microphone" />
 </permissions>
