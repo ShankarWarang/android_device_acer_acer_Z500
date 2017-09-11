@@ -1,0 +1,22 @@
+From e3c23380a5bd0e29f16dcf7fcc7ac34ea788f14c Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Vojt=C4=9Bch=20Hejsek?= <hejsekvojtech@gmail.com>
+Date: Tue, 12 Sep 2017 00:29:21 +0200
+Subject: [PATCH] Fix offline charging mode on MediaTek
+
+---
+ init/init.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/init/init.cpp b/init/init.cpp
+index 7a370596e..7b2a6a151 100755
+--- a/init/init.cpp
++++ b/init/init.cpp
+@@ -553,7 +553,7 @@ static int charging_mode_booting(void) {
+     }
+ 
+     close(f);
+-    return ('1' == cmb);
++    return ('8' == cmb);
+ #endif
+ }
+ 
