@@ -962,6 +962,7 @@ service thermal_manager /system/bin/thermal_manager
 
 service battery_charger /charger
     class charger
+    critical
     seclabel u:r:healthd:s0
 #
 # Connectivity related services (Begin)
