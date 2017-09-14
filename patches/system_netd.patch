@@ -47,15 +47,19 @@ index 1c59ec3..a0cb9aa 100755
  
  #include "SoftapController.h"
  #include <dirent.h>
-@@ -54,7 +55,7 @@ using android::base::WriteStringToFile;
+diff --git a/server/SoftapController.cpp b/server/SoftapController.cpp
+index 4a7c8d7..f03f2ef 100755
+--- a/server/SoftapController.cpp
++++ b/server/SoftapController.cpp
+@@ -53,7 +53,7 @@ using android::base::WriteStringToFile;
+ #include "wpa_ctrl.h"
  #endif
  
- #ifdef LIBWPA_CLIENT_EXISTS
 -std:: string hostapd_unix_file(StringPrintf("/data/misc/wifi/hostapd/wlan0"));
 +std:: string hostapd_unix_file(StringPrintf("/data/misc/wifi/hostapd/ap0"));
+ #ifdef LIBWPA_CLIENT_EXISTS
  static const char HOSTAPD_DHCP_DIR[]    = "/data/misc/dhcp";
  #endif
- static const char HOSTAPD_CONF_FILE[]    = "/data/misc/wifi/hostapd.conf";
 @@ -252,6 +253,8 @@ bool SoftapController::isSoftapStarted() {
      return (mPid != 0);
  }
