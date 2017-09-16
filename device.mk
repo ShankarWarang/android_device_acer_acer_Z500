@@ -48,7 +48,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     libxlog
-	libmtk_symbols \
+    libmtk_symbols \
 
 # Lights
 PRODUCT_PACKAGES += \
