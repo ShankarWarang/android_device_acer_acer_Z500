@@ -1,5 +1,4 @@
-#
-# Copyright (C) 2017 The LineageOS Project
+# Copyright (C) 2015 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,16 +11,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
 
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := \
-    mt6582_ril.cpp
+    mtk_ui.cpp \
+    mtk_ril.cpp \
+    icu55.c
 
-LOCAL_SHARED_LIBRARIES := libbinder
-LOCAL_MODULE := libmt6582
-LOCAL_MODULE_TAGS := optional
+LOCAL_SHARED_LIBRARIES := libbinder liblog libicuuc libui \
+                          libstagefright
+LOCAL_MODULE := libmtk_symbols
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
 
 include $(BUILD_SHARED_LIBRARY)

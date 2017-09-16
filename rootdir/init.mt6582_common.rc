@@ -16,7 +16,6 @@ on charger
     write /sys/devices/platform/mt_usb/cmode 0
 
 on init
-    export LD_PRELOAD "/system/lib/libxlog.so /system/lib/libmt6582.so"
     
     mkdir /protect_f 0771 system system
     mkdir /protect_s 0771 system system
